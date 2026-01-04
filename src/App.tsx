@@ -6,6 +6,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
+// Admin
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminClientes from "./pages/admin/Clientes";
+import AdminPlanos from "./pages/admin/Planos";
+import AdminEmpresas from "./pages/admin/Empresas";
+import AdminLogs from "./pages/admin/Logs";
+import AdminMetricas from "./pages/admin/Metricas";
+import AdminFaturamento from "./pages/admin/Faturamento";
+import AdminConfiguracoes from "./pages/admin/Configuracoes";
+
 // Core
 import CoreUsuarios from "./pages/core/Usuarios";
 import CorePerfis from "./pages/core/Perfis";
@@ -62,6 +72,16 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          
+          {/* Admin */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/clientes" element={<AdminClientes />} />
+          <Route path="/admin/planos" element={<AdminPlanos />} />
+          <Route path="/admin/empresas" element={<AdminEmpresas />} />
+          <Route path="/admin/logs" element={<AdminLogs />} />
+          <Route path="/admin/metricas" element={<AdminMetricas />} />
+          <Route path="/admin/faturamento" element={<AdminFaturamento />} />
+          <Route path="/admin/configuracoes" element={<AdminConfiguracoes />} />
           
           {/* Core */}
           <Route path="/core/usuarios" element={<CoreUsuarios />} />
