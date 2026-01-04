@@ -57,6 +57,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // CitiView Custom Colors
+        citiview: {
+          navy: "hsl(var(--citiview-navy))",
+          "navy-light": "hsl(var(--citiview-navy-light))",
+          orange: "hsl(var(--citiview-orange))",
+          "orange-light": "hsl(var(--citiview-orange-light))",
+          success: "hsl(var(--citiview-success))",
+          warning: "hsl(var(--citiview-warning))",
+          info: "hsl(var(--citiview-info))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
