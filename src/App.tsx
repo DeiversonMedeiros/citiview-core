@@ -62,6 +62,26 @@ import LogisticaRotas from "./pages/logistica/Rotas";
 import LogisticaDeslocamentos from "./pages/logistica/Deslocamentos";
 import LogisticaViagens from "./pages/logistica/Viagens";
 
+// Portal Colaborador
+import ColaboradorRegistroPonto from "./pages/colaborador/RegistroPonto";
+import ColaboradorCorrecaoPonto from "./pages/colaborador/CorrecaoPonto";
+import ColaboradorAssinaturaPonto from "./pages/colaborador/AssinaturaPonto";
+import ColaboradorBancoHoras from "./pages/colaborador/BancoHoras";
+import ColaboradorFerias from "./pages/colaborador/Ferias";
+import ColaboradorContraCheque from "./pages/colaborador/ContraCheque";
+import ColaboradorReembolso from "./pages/colaborador/Reembolso";
+import ColaboradorAtestados from "./pages/colaborador/Atestados";
+import ColaboradorExamesPeriodicos from "./pages/colaborador/ExamesPeriodicos";
+import ColaboradorComprovanteIR from "./pages/colaborador/ComprovanteIR";
+
+// Portal Gestor
+import GestorCentralAprovacoes from "./pages/gestor/CentralAprovacoes";
+import GestorAcompanhamentoPonto from "./pages/gestor/AcompanhamentoPonto";
+import GestorAprovacaoFerias from "./pages/gestor/AprovacaoFerias";
+import GestorAprovacaoReembolso from "./pages/gestor/AprovacaoReembolso";
+import GestorAprovacaoAssinaturaPonto from "./pages/gestor/AprovacaoAssinaturaPonto";
+import GestorAcompanhamentoExames from "./pages/gestor/AcompanhamentoExames";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -128,6 +148,26 @@ const App = () => (
           <Route path="/logistica/rotas" element={<LogisticaRotas />} />
           <Route path="/logistica/deslocamentos" element={<LogisticaDeslocamentos />} />
           <Route path="/logistica/viagens" element={<LogisticaViagens />} />
+          
+          {/* Portal Colaborador */}
+          <Route path="/colaborador/registro-ponto" element={<ColaboradorRegistroPonto />} />
+          <Route path="/colaborador/correcao-ponto" element={<ColaboradorCorrecaoPonto />} />
+          <Route path="/colaborador/assinatura-ponto" element={<ColaboradorAssinaturaPonto />} />
+          <Route path="/colaborador/banco-horas" element={<ColaboradorBancoHoras />} />
+          <Route path="/colaborador/ferias" element={<ColaboradorFerias />} />
+          <Route path="/colaborador/contra-cheque" element={<ColaboradorContraCheque />} />
+          <Route path="/colaborador/reembolso" element={<ColaboradorReembolso />} />
+          <Route path="/colaborador/atestados" element={<ColaboradorAtestados />} />
+          <Route path="/colaborador/exames-periodicos" element={<ColaboradorExamesPeriodicos />} />
+          <Route path="/colaborador/comprovante-ir" element={<ColaboradorComprovanteIR />} />
+          
+          {/* Portal Gestor */}
+          <Route path="/gestor/central-aprovacoes" element={<GestorCentralAprovacoes />} />
+          <Route path="/gestor/acompanhamento-ponto" element={<GestorAcompanhamentoPonto />} />
+          <Route path="/gestor/aprovacao-ferias" element={<GestorAprovacaoFerias />} />
+          <Route path="/gestor/aprovacao-reembolso" element={<GestorAprovacaoReembolso />} />
+          <Route path="/gestor/aprovacao-assinatura-ponto" element={<GestorAprovacaoAssinaturaPonto />} />
+          <Route path="/gestor/acompanhamento-exames" element={<GestorAcompanhamentoExames />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>

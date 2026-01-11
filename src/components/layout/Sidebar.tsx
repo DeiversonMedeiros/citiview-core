@@ -13,6 +13,8 @@ import {
   Building2,
   ChevronDown,
   ChevronRight,
+  UserCircle,
+  ClipboardCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +30,34 @@ const menuItems: MenuItem[] = [
     title: "Dashboard",
     icon: LayoutDashboard,
     path: "/",
+  },
+  {
+    title: "Portal Colaborador",
+    icon: UserCircle,
+    children: [
+      { title: "Registro de Ponto", path: "/colaborador/registro-ponto" },
+      { title: "Correção de Ponto", path: "/colaborador/correcao-ponto" },
+      { title: "Assinatura de Ponto", path: "/colaborador/assinatura-ponto" },
+      { title: "Banco de Horas", path: "/colaborador/banco-horas" },
+      { title: "Férias", path: "/colaborador/ferias" },
+      { title: "Contra Cheque", path: "/colaborador/contra-cheque" },
+      { title: "Reembolso", path: "/colaborador/reembolso" },
+      { title: "Atestados", path: "/colaborador/atestados" },
+      { title: "Exames Periódicos", path: "/colaborador/exames-periodicos" },
+      { title: "Comprovante IR", path: "/colaborador/comprovante-ir" },
+    ],
+  },
+  {
+    title: "Portal Gestor",
+    icon: ClipboardCheck,
+    children: [
+      { title: "Central de Aprovações", path: "/gestor/central-aprovacoes" },
+      { title: "Acompanhamento Ponto", path: "/gestor/acompanhamento-ponto" },
+      { title: "Aprovação Férias", path: "/gestor/aprovacao-ferias" },
+      { title: "Aprovação Reembolso", path: "/gestor/aprovacao-reembolso" },
+      { title: "Aprovação Assinatura", path: "/gestor/aprovacao-assinatura-ponto" },
+      { title: "Acompanhamento Exames", path: "/gestor/acompanhamento-exames" },
+    ],
   },
   {
     title: "Core",
