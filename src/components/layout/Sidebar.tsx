@@ -15,6 +15,7 @@ import {
   ChevronRight,
   UserCircle,
   ClipboardCheck,
+  Award,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -135,6 +136,21 @@ const menuItems: MenuItem[] = [
       { title: "Rotas", path: "/logistica/rotas" },
       { title: "Deslocamentos", path: "/logistica/deslocamentos" },
       { title: "Viagens", path: "/logistica/viagens" },
+    ],
+  },
+  {
+    title: "Qualidade",
+    icon: Award,
+    children: [
+      { title: "Gestão de Documentos", path: "/qualidade/gestao-documentos" },
+      { title: "Gestão de Indicadores", path: "/qualidade/gestao-indicadores" },
+      { title: "Gestão de Riscos", path: "/qualidade/gestao-riscos" },
+      { title: "Não Conformidades", path: "/qualidade/nao-conformidades" },
+      { title: "Auditorias", path: "/qualidade/auditorias" },
+      { title: "Planos de Ação", path: "/qualidade/planos-acao" },
+      { title: "Reuniões", path: "/qualidade/reunioes" },
+      { title: "Calibração", path: "/qualidade/calibracao" },
+      { title: "Planej. Estratégico", path: "/qualidade/planejamento-estrategico" },
     ],
   },
 ];

@@ -82,6 +82,17 @@ import GestorAprovacaoReembolso from "./pages/gestor/AprovacaoReembolso";
 import GestorAprovacaoAssinaturaPonto from "./pages/gestor/AprovacaoAssinaturaPonto";
 import GestorAcompanhamentoExames from "./pages/gestor/AcompanhamentoExames";
 
+// Qualidade
+import QualidadeGestaoDocumentos from "./pages/qualidade/GestaoDocumentos";
+import QualidadeGestaoIndicadores from "./pages/qualidade/GestaoIndicadores";
+import QualidadeGestaoRiscos from "./pages/qualidade/GestaoRiscos";
+import QualidadeNaoConformidades from "./pages/qualidade/NaoConformidades";
+import QualidadeAuditorias from "./pages/qualidade/Auditorias";
+import QualidadePlanosAcao from "./pages/qualidade/PlanosAcao";
+import QualidadeReunioes from "./pages/qualidade/Reunioes";
+import QualidadeCalibracao from "./pages/qualidade/Calibracao";
+import QualidadePlanejamentoEstrategico from "./pages/qualidade/PlanejamentoEstrategico";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -168,6 +179,17 @@ const App = () => (
           <Route path="/gestor/aprovacao-reembolso" element={<GestorAprovacaoReembolso />} />
           <Route path="/gestor/aprovacao-assinatura-ponto" element={<GestorAprovacaoAssinaturaPonto />} />
           <Route path="/gestor/acompanhamento-exames" element={<GestorAcompanhamentoExames />} />
+          
+          {/* Qualidade */}
+          <Route path="/qualidade/gestao-documentos" element={<QualidadeGestaoDocumentos />} />
+          <Route path="/qualidade/gestao-indicadores" element={<QualidadeGestaoIndicadores />} />
+          <Route path="/qualidade/gestao-riscos" element={<QualidadeGestaoRiscos />} />
+          <Route path="/qualidade/nao-conformidades" element={<QualidadeNaoConformidades />} />
+          <Route path="/qualidade/auditorias" element={<QualidadeAuditorias />} />
+          <Route path="/qualidade/planos-acao" element={<QualidadePlanosAcao />} />
+          <Route path="/qualidade/reunioes" element={<QualidadeReunioes />} />
+          <Route path="/qualidade/calibracao" element={<QualidadeCalibracao />} />
+          <Route path="/qualidade/planejamento-estrategico" element={<QualidadePlanejamentoEstrategico />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
