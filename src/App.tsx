@@ -93,6 +93,19 @@ import QualidadeReunioes from "./pages/qualidade/Reunioes";
 import QualidadeCalibracao from "./pages/qualidade/Calibracao";
 import QualidadePlanejamentoEstrategico from "./pages/qualidade/PlanejamentoEstrategico";
 
+// Comercial
+import ComercialDashboard from "./pages/comercial/Dashboard";
+import ComercialPropostas from "./pages/comercial/Propostas";
+import ComercialLicitacoes from "./pages/comercial/Licitacoes";
+import ComercialContratos from "./pages/comercial/Contratos";
+import ComercialAditivos from "./pages/comercial/Aditivos";
+
+// Máquinas e Equipamentos
+import MaquinasDashboard from "./pages/maquinas/Dashboard";
+import MaquinasEquipamentos from "./pages/maquinas/Equipamentos";
+import MaquinasManutencoes from "./pages/maquinas/Manutencoes";
+import MaquinasChamados from "./pages/maquinas/Chamados";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -190,6 +203,19 @@ const App = () => (
           <Route path="/qualidade/reunioes" element={<QualidadeReunioes />} />
           <Route path="/qualidade/calibracao" element={<QualidadeCalibracao />} />
           <Route path="/qualidade/planejamento-estrategico" element={<QualidadePlanejamentoEstrategico />} />
+          
+          {/* Comercial */}
+          <Route path="/comercial/dashboard" element={<ComercialDashboard />} />
+          <Route path="/comercial/propostas" element={<ComercialPropostas />} />
+          <Route path="/comercial/licitacoes" element={<ComercialLicitacoes />} />
+          <Route path="/comercial/contratos" element={<ComercialContratos />} />
+          <Route path="/comercial/aditivos" element={<ComercialAditivos />} />
+          
+          {/* Máquinas e Equipamentos */}
+          <Route path="/maquinas/dashboard" element={<MaquinasDashboard />} />
+          <Route path="/maquinas/equipamentos" element={<MaquinasEquipamentos />} />
+          <Route path="/maquinas/manutencoes" element={<MaquinasManutencoes />} />
+          <Route path="/maquinas/chamados" element={<MaquinasChamados />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
