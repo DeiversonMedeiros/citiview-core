@@ -16,6 +16,8 @@ import {
   UserCircle,
   ClipboardCheck,
   Award,
+  Briefcase,
+  Cog,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -151,6 +153,27 @@ const menuItems: MenuItem[] = [
       { title: "Reuniões", path: "/qualidade/reunioes" },
       { title: "Calibração", path: "/qualidade/calibracao" },
       { title: "Planej. Estratégico", path: "/qualidade/planejamento-estrategico" },
+    ],
+  },
+  {
+    title: "Comercial",
+    icon: Briefcase,
+    children: [
+      { title: "Dashboard", path: "/comercial/dashboard" },
+      { title: "Propostas", path: "/comercial/propostas" },
+      { title: "Licitações", path: "/comercial/licitacoes" },
+      { title: "Contratos", path: "/comercial/contratos" },
+      { title: "Aditivos", path: "/comercial/aditivos" },
+    ],
+  },
+  {
+    title: "Máquinas e Equip.",
+    icon: Cog,
+    children: [
+      { title: "Dashboard", path: "/maquinas/dashboard" },
+      { title: "Equipamentos", path: "/maquinas/equipamentos" },
+      { title: "Manutenções", path: "/maquinas/manutencoes" },
+      { title: "Chamados", path: "/maquinas/chamados" },
     ],
   },
 ];
