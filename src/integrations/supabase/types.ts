@@ -20,7 +20,49 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_entity_data: {
+        Args: {
+          company_id_param?: string
+          data_param?: Json
+          schema_name: string
+          table_name: string
+        }
+        Returns: Json
+      }
+      delete_entity_data: {
+        Args: { entity_id: string; schema_name: string; table_name: string }
+        Returns: boolean
+      }
+      get_entity_by_id: {
+        Args: { entity_id: string; schema_name: string; table_name: string }
+        Returns: Json
+      }
+      get_entity_data: {
+        Args: {
+          company_id_param?: string
+          filters?: Json
+          limit_param?: number
+          offset_param?: number
+          order_by?: string
+          order_direction?: string
+          schema_name: string
+          table_name: string
+        }
+        Returns: {
+          data: Json
+          id: string
+          total_count: number
+        }[]
+      }
+      update_entity_data: {
+        Args: {
+          data_param?: Json
+          entity_id: string
+          schema_name: string
+          table_name: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
