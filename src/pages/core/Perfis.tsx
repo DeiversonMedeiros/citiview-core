@@ -5,10 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Plus, Shield, Edit, Trash2, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { usePerfisAcesso } from "@/hooks/usePerfisAcesso";
+import { PerfilFormDialog } from "@/components/core/PerfilFormDialog";
+import { DeleteConfirmDialog } from "@/components/core/DeleteConfirmDialog";
+import { PerfilAcesso } from "@/services/coreService";
 
 const CorePerfis = () => {
-  const { loading, perfis, fetchPerfis } = usePerfisAcesso();
+  const { loading, perfis, fetchPerfis, createPerfil, updatePerfil, deletePerfil } = usePerfisAcesso();
   const [isInitialized, setIsInitialized] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [selectedPerfil, setSelectedPerfil] = useState<PerfilAcesso | null>(null);
 
   useEffect(() => {
     if (!isInitialized) {
@@ -16,6 +22,37 @@ const CorePerfis = () => {
       setIsInitialized(true);
     }
   }, [fetchPerfis, isInitialized]);
+
+  const handleCreate = () => {
+    setSelectedPerfil(null);
+    setFormOpen(true);
+  };
+
+  const handleEdit = (perfil: PerfilAcesso) => {
+    setSelectedPerfil(perfil);
+    setFormOpen(true);
+  };
+
+  const handleDelete = (perfil: PerfilAcesso) => {
+    setSelectedPerfil(perfil);
+    setDeleteOpen(true);
+  };
+
+  const handleSave = async (data: Partial<PerfilAcesso>) => {
+    if (selectedPerfil) {
+      await updatePerfil(selectedPerfil.id, data);
+    } else {
+      await createPerfil(data);
+    }
+    fetchPerfis();
+  };
+
+  const handleConfirmDelete = async () => {
+    if (selectedPerfil) {
+      await deletePerfil(selectedPerfil.id);
+      fetchPerfis();
+    }
+  };
 
   return (
     <MainLayout>
@@ -25,7 +62,7 @@ const CorePerfis = () => {
             <h1 className="text-2xl font-bold">Perfis de Acesso</h1>
             <p className="text-muted-foreground">Gerencie os perfis e permissões</p>
           </div>
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={handleCreate}>
             <Plus className="h-4 w-4" />
             Novo Perfil
           </Button>
@@ -43,7 +80,7 @@ const CorePerfis = () => {
               <p className="text-muted-foreground text-center mb-4">
                 Crie perfis de acesso para gerenciar as permissões dos usuários.
               </p>
-              <Button className="gap-2">
+              <Button className="gap-2" onClick={handleCreate}>
                 <Plus className="h-4 w-4" />
                 Criar Perfil
               </Button>
@@ -79,10 +116,10 @@ const CorePerfis = () => {
                       </div>
                     </div>
                     <div className="flex gap-1">
-                      <Button variant="ghost" size="icon">
+                      <Button variant="ghost" size="icon" onClick={() => handleEdit(perfil)}>
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="icon">
+                      <Button variant="ghost" size="icon" onClick={() => handleDelete(perfil)}>
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -93,6 +130,21 @@ const CorePerfis = () => {
           </div>
         )}
       </div>
+
+      <PerfilFormDialog
+        open={formOpen}
+        onOpenChange={setFormOpen}
+        perfil={selectedPerfil}
+        onSave={handleSave}
+      />
+
+      <DeleteConfirmDialog
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        title="Excluir Perfil de Acesso"
+        description={`Tem certeza que deseja excluir o perfil "${selectedPerfil?.nome}"? Esta ação não pode ser desfeita.`}
+        onConfirm={handleConfirmDelete}
+      />
     </MainLayout>
   );
 };
