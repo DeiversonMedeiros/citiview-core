@@ -12,13 +12,25 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Search, Filter, MoreHorizontal, Loader2, Users } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Plus, Search, Filter, MoreHorizontal, Loader2, Users, Edit, Trash2 } from "lucide-react";
 import { useCoreUsuarios } from "@/hooks/useCoreUsuarios";
+import { UsuarioFormDialog } from "@/components/core/UsuarioFormDialog";
+import { DeleteConfirmDialog } from "@/components/core/DeleteConfirmDialog";
+import { Usuario } from "@/services/coreService";
 
 const CoreUsuarios = () => {
-  const { loading, usuarios, fetchUsuarios } = useCoreUsuarios();
+  const { loading, usuarios, fetchUsuarios, createUsuario, updateUsuario, deleteUsuario } = useCoreUsuarios();
   const [isInitialized, setIsInitialized] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [formOpen, setFormOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [selectedUsuario, setSelectedUsuario] = useState<Usuario | null>(null);
 
   useEffect(() => {
     if (!isInitialized) {
@@ -32,6 +44,37 @@ const CoreUsuarios = () => {
     usuario.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleCreate = () => {
+    setSelectedUsuario(null);
+    setFormOpen(true);
+  };
+
+  const handleEdit = (usuario: Usuario) => {
+    setSelectedUsuario(usuario);
+    setFormOpen(true);
+  };
+
+  const handleDelete = (usuario: Usuario) => {
+    setSelectedUsuario(usuario);
+    setDeleteOpen(true);
+  };
+
+  const handleSave = async (data: Partial<Usuario>) => {
+    if (selectedUsuario) {
+      await updateUsuario(selectedUsuario.id, data);
+    } else {
+      await createUsuario(data);
+    }
+    fetchUsuarios();
+  };
+
+  const handleConfirmDelete = async () => {
+    if (selectedUsuario) {
+      await deleteUsuario(selectedUsuario.id);
+      fetchUsuarios();
+    }
+  };
+
   return (
     <MainLayout>
       <div className="space-y-6">
@@ -40,7 +83,7 @@ const CoreUsuarios = () => {
             <h1 className="text-2xl font-bold">Usuários</h1>
             <p className="text-muted-foreground">Gerencie os usuários do sistema</p>
           </div>
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={handleCreate}>
             <Plus className="h-4 w-4" />
             Novo Usuário
           </Button>
@@ -83,7 +126,7 @@ const CoreUsuarios = () => {
                     : "Comece cadastrando o primeiro usuário do sistema."}
                 </p>
                 {!searchTerm && (
-                  <Button className="gap-2">
+                  <Button className="gap-2" onClick={handleCreate}>
                     <Plus className="h-4 w-4" />
                     Cadastrar Usuário
                   </Button>
@@ -112,9 +155,26 @@ const CoreUsuarios = () => {
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Button variant="ghost" size="icon">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="bg-popover">
+                            <DropdownMenuItem onClick={() => handleEdit(usuario)}>
+                              <Edit className="mr-2 h-4 w-4" />
+                              Editar
+                            </DropdownMenuItem>
+                            <DropdownMenuItem 
+                              onClick={() => handleDelete(usuario)}
+                              className="text-destructive focus:text-destructive"
+                            >
+                              <Trash2 className="mr-2 h-4 w-4" />
+                              Excluir
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -124,6 +184,21 @@ const CoreUsuarios = () => {
           </CardContent>
         </Card>
       </div>
+
+      <UsuarioFormDialog
+        open={formOpen}
+        onOpenChange={setFormOpen}
+        usuario={selectedUsuario}
+        onSave={handleSave}
+      />
+
+      <DeleteConfirmDialog
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        title="Excluir Usuário"
+        description={`Tem certeza que deseja excluir o usuário "${selectedUsuario?.nome}"? Esta ação não pode ser desfeita.`}
+        onConfirm={handleConfirmDelete}
+      />
     </MainLayout>
   );
 };
